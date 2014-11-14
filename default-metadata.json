@@ -1,0 +1,391 @@
+{
+  "version": 63,
+  "tenantid": "Massasoit",
+  "mobappid": 200,
+  "appName": "MyMassasoit",
+  "appDisplayName": "MyMassasoit",
+  "homeScreenTemplate": "                <ul id=\"home-list\">{{#apps}}\r\n                    <li style=\"float:left;padding:5px;list-style:none;\">\r\n                        <div>\r\n                            <a href=\"#\" onClick = 'MyCampusMobile.appManager.openApp(\"{{id}}\");' data-transition=\"slide\">\r\n                                <img src=\"./images/educause/{{logo}}.png\" style=\"width:60px;height:60px;\"/>\r\n                            <\/a>\r\n                        <\/div>\r\n                            <div style=\"color:#FFFFFF;text-align:center;text-shadow:none;\">{{name}}<\/div>\r\n                    <\/li>{{/apps}}\r\n                <\/ul>\r\n                ",
+  "middlewareServerUrl": null,
+  "feedbackEmail": null,
+  "backgroundurl": "Massasoit/background.png",
+  "brandingurl": "Massasoit/branding.png",
+  "customStyle": "#branding {\r\n  position:absolute !important;\r\n  bottom:15px !important;\r\n  left:0px !important;\r\n  right:0px !important;\r\n  width:55% !important;\r\n  margin:auto !important;\r\n}\r\nbody {\r\n   position:absolute;\r\n   width:100%;\r\n   height:100%;\r\n   background-size:100% 100% !important;\r\n}\r\n.icon {\r\n   width:56px !important;\r\n   height:56px !important;\r\n}\r\n.campuseai-Info {\r\n  color:white;\r\n}\r\n.dockicon:after {\r\n   bottom:0px !important;\r\n}\r\n\r\n.dockicon {\r\n   margin-bottom:25px !important;\r\n}\r\n\r\n\r\n.blockUI i{\r\n   color:white !important;\r\n}\r\n\r\n@media (min-width: 768px) { \r\n   #branding {\r\n      width:50% !important;\r\n      margin:auto;    \r\n   }\r\n   .icon {\r\n      width:102px !important;\r\n      height:102px !important;\r\n    }\r\n}\r\n\r\n.promptumenu_nav a.active {\r\n   background:#fff;\r\n   border-radius:50%;\r\n   width:10px;\r\n   height:10px;\r\n}\r\n\r\n.promptumenu_nav a {\r\n  background:#00162f;\r\n   border-radius:50%;\r\n   width:10px;\r\n   height:10px;\r\n}\r\n.promptumenu_window {\r\n   overflow:visible !important; \r\n}\r\n\r\n.promptumenu_nav {\r\nmargin-bottom:-3px;\r\n}\r\n\r\n.app-body {\r\n   padding-bottom:19px !important;\r\n}\r\n\r\n.blockUI {\r\n  margin:auto !important;\r\n  left:0px  !important;\r\n  right:0px !important;\r\n  width:auto !important;\r\n}\r\n\r\n#homedata .campuseai-Info {\r\n  width:76px !important;\r\n  margin-left:-10px;\r\n}\r\n@media (min-width : 320px) and (max-width : 480px) { \r\n   .icon { width:56px !important;\r\n     height:56px !important;\r\n   }\r\n   #homedata .campuseai-Info {\r\n     width:76px !important;\r\n     margin-left:-10px;\r\n   }\r\n}\r\n\r\n@media (min-width : 320px) and (max-width : 568px) { \r\n   .icon { width:63px !important;\r\n\t   height:63px !important;\r\n   }\r\n   #homedata .campuseai-Info {\r\n     width:83px !important;\r\n     margin-left:-10px;\r\n   }\r\n}\r\n.navbar-app, .sidebar, #mainSidebar { background : #0d7d7d !important; } .navbar-brand, .navbar-absolute-top .btn-navbar { color : #f8f8f8 !important; } .navbar-absolute-bottom .navbar-inverse { background : #0d7d7d !important; } .navbar-absolute-bottom .navbar-inverse { color : #f8f8f8 !important; } .app { background : #083c69 !important; } .campuseai-Info { color : #f8f8f8 !important; } #mainSidebar .list-group-item { background : #083c69 !important; } #mainSidebar .list-group-item { color : #f8f8f8 !important; } #mainSidebar .appgroup { background : #0d7d7d !important; } #mainSidebar .appgroup { color : #f8f8f8 !important; } ",
+  "authFunction": "function authFunction(uname, password, $http, $rootScope, success, error) {\r\n\r\n    var authSuccess = success;\r\n    var authError = error;\r\n    //Peoplesoft authentication\r\n    /*\r\n    var url = $rootScope.middlewareServerUrl + \"/services/ps/psholds\";\r\n    var data = {};\r\n    if (window.device) {\r\n        data = \"userId=\" + uname + \"&password=\" + password;\r\n    } else {\r\n        url = \"/websimulator/json?url=\" + url;\r\n        data = {\r\n            method: \"POST\",\r\n            body: \"userId=\" + uname + \"&password=\" + password\r\n        };\r\n    }\r\n    $.blockUI({\r\n        message: '<div style=\"margin: 2px; vertical-align: middle; display: inline-block\"><i class=\"icon-cog icon-spin icon-4x\"><\/i><h3>Authenticating<\/h3><\/div>'\r\n    });\r\n    alert(\"URL : \" + url);\r\n    $http.post(url, data).success(function (data, status, headers, config) {\r\n        success(data);\r\n        $.unblockUI();\r\n    }).error(function (data, status, headers, config) {\r\n        error(data);\r\n        $.unblockUI();\r\n    });\r\n*/\r\n    //Banner Authentication with CAS\r\n\r\n    /*var url = \"https://my.curry.edu/cas/v1/tickets/\";\r\n    var data = {};\r\n    if (window.device) {\r\n        data = \"username=\" + uname + \"&password=\" + password;\r\n    } else {\r\n        url = \"/websimulator/text?url=\" + url;\r\n        data = {\r\n            method: \"POST\",\r\n            body: \"username=\" + uname + \"&password=\" + password\r\n        };\r\n    }\r\n\r\n    $rootScope.generateST = function (tgt, service, callback) {\r\n        var data = {};\r\n        if (window.device) {\r\n            data = \"service=\" + service;\r\n        } else {\r\n            url = \"/websimulator/text?url=\" + \"https://my.curry.edu/cas/v1/tickets/\";\r\n            data = {\r\n                method: \"POST\",\r\n                body: \"service=\" + service\r\n            };\r\n        }\r\n\r\n        $.ajax({\r\n            url: url + tgt,\r\n            type: \"POST\",\r\n            async: true,\r\n            data: data,\r\n            error: function (response) {\r\n                alert(\"Error : \" + response);\r\n\r\n            },\r\n            success: function (data) {\r\n                //alert(\"Success : \" + data);\r\n                callback(data);\r\n            }\r\n        });\r\n\r\n    };\r\n\r\n    $.blockUI({\r\n        message: '<div style=\"margin: 2px; vertical-align: middle; display: inline-block\"><i class=\"icon-cog icon-spin icon-4x\"><\/i><h3>Authenticating<\/h3><\/div>'\r\n    });\r\n    $.ajax({\r\n        url: url,\r\n        type: \"POST\",\r\n        async: true,\r\n        data: data,\r\n        error: function (response) {\r\n            $.unblockUI();\r\n        },\r\n        success: function (data) {\r\n            //alert(\"Success : \" + data);\r\n            $.unblockUI();\r\n\r\n        },\r\n        complete: function (response, textStatus) {\r\n            //alert(\"complete : \" + response + \"  text status : \" + textStatus);\r\n            $.unblockUI();\r\n            if (textStatus == \"success\" && response.status == 201) {\r\n                var str = response.getResponseHeader('Location');\r\n                var tgtTicket = str.substr(str.lastIndexOf('/') + 1);\r\n                //generateST(tgtTicket);\r\n                success({\r\n                    \"ticket\": tgtTicket\r\n                });\r\n                $rootScope.$apply(function () {\r\n\r\n                    $rootScope.setRoute(\"/home\");\r\n\r\n                });\r\n\r\n\r\n            } else {\r\n                success({\r\n                    \"error\": \"Oops! Cannot log you in. Please check your login details.\"\r\n                });\r\n            }\r\n        }\r\n\r\n    });*/\r\n\r\n\r\n    //Banner Authentication with LDAP - middlware auth\r\n\r\n    var url = $rootScope.middlewareServerUrl + \"/bannermobile2/services/authenticate/login\";\r\n    var data = {};\r\n    if (window.device) {\r\n        data = \"username=\" + uname + \"&password=\" + password;\r\n    } else {\r\n        url = \"/websimulator/json?url=\" + url;\r\n        data = {\r\n            method: \"POST\",\r\n            body: \"username=\" + uname + \"&password=\" + password\r\n        };\r\n    }\r\n    var authUrl = url;\r\n    var authData = data;\r\n    $rootScope.generateST = function (tgt, service, callback) {\r\n        //Bypassing the ST as there is no service ticket required here..\r\n        callback(tgt);\r\n    };\r\n\r\n    $rootScope.postAPI = function (endpoint, postdata, callback) {\r\n        $.blockUI();\r\n        $rootScope.generateST($rootScope.ticket, endpoint, function (st) {\r\n            var serviceurl = endpoint + \"?ticket=\" + st;\r\n            var url = \"\";\r\n            var proxyMethod = \"POST\";\r\n            var proxyData = postdata;\r\n            if (window.device) {\r\n                url = serviceurl;\r\n            } else {\r\n                url = \"/websimulator/json?url=\" + serviceurl;\r\n                proxyMethod = \"POST\";\r\n                proxyData = {\r\n                    method: \"POST\",\r\n                    body: postdata\r\n                }\r\n            }\r\n            $http({\r\n                method: proxyMethod,\r\n                url: url,\r\n                data: proxyData\r\n            }).\r\n            success(function (data, status, headers, config) {\r\n                $.unblockUI();\r\n                callback(data, status, headers, config);\r\n            }).\r\n            error(function (data, status, headers, config) {\r\n                $.unblockUI();\r\n                //alert(\"Error in service call : \" + data + \" Status : \" + status);\r\n                if (status == 403) { //Ticket expired.. need to relogin\r\n                    $http.post(authUrl, authData).success(function (data, status, headers, config) {\r\n                        authSuccess(data);\r\n                        $rootScope.getAPI(endpoint, callback);\r\n                    }).error(function (data, status, headers, config) {\r\n                        authError(data);\r\n\r\n                    });\r\n                }\r\n\r\n            });\r\n\r\n        });\r\n\r\n    };\r\n\r\n    $rootScope.getAPI = function (endpoint, callback) {\r\n        $.blockUI();\r\n        $rootScope.generateST($rootScope.ticket, endpoint, function (st) {\r\n            var serviceurl = endpoint + \"?ticket=\" + st;\r\n            var url = \"\";\r\n            var proxyMethod = \"GET\";\r\n            var proxyData = {};\r\n            if (window.device) {\r\n                url = serviceurl;\r\n            } else {\r\n                url = \"/websimulator/json?url=\" + encodeURIComponent(serviceurl);\r\n                proxyMethod = \"POST\";\r\n                proxyData = {\r\n                    method: \"GET\"\r\n                }\r\n            }\r\n            $http({\r\n                method: proxyMethod,\r\n                url: url,\r\n                data: proxyData\r\n            }).\r\n            success(function (data, status, headers, config) {\r\n                $.unblockUI();\r\n                callback(data, status, headers, config);\r\n            }).\r\n            error(function (data, status, headers, config) {\r\n                $.unblockUI();\r\n                //alert(\"Error in service call : \" + data + \" Status : \" + status);\r\n                if (status == 403) { //Ticket expired.. need to relogin\r\n                    $http.post(authUrl, authData).success(function (data, status, headers, config) {\r\n                        authSuccess(data);\r\n                        $rootScope.getAPI(endpoint, callback);\r\n                    }).error(function (data, status, headers, config) {\r\n                        authError(data);\r\n\r\n                    });\r\n                }\r\n\r\n            });\r\n\r\n        });\r\n\r\n    };\r\n\r\n\r\n\r\n\r\n    $.blockUI({\r\n        message: '<div style=\"margin: 2px; vertical-align: middle; display: inline-block\"><i class=\"icon-cog icon-spin icon-4x\"><\/i><h3>Authenticating<\/h3><\/div>'\r\n    });\r\n\r\n    $http.post(url, data).success(function (data, status, headers, config) {\r\n      success(data);\r\n        $.unblockUI();\r\n    }).error(function (data, status, headers, config) {\r\n        error(data);\r\n        $.unblockUI();\r\n    });\r\n\r\n}",
+  "forgotPasswordUrl": null,
+  "reportissueEmail": null,
+  "iconWidth": 70,
+  "apps": 
+  [
+    {
+      "id": 3314,
+      "name": "News",
+      "displayname": "News",
+      "logo": "Massasoit/News.png",
+      "logourl": "Massasoit/News.png",
+      "description": "Campus News Feeds test",
+      "appFeatureType": "Public",
+      "roles": "public",
+      "showInDock": false,
+      "showInHome": true,
+      "networkrequired": true,
+      "analytics": false,
+      "pages": 
+      [
+        {
+          "pageid": "NewsDetails",
+          "pageTemplate": "<div><\/div>",
+          "datatemplate": "<div class=\"jumbotron\"><h4 class=\"page-header\">{{feed.title}}<\/h4><p class=\"small\" ng-bind-html=\"trusthtml(feed.content)\"><\/p><p class=\"small\">Published on : {{feed.publishedDate}}<\/p><a class=\"btn btn-primary btn-block\" ng-click=\"openurl();\">View Web Site<\/a><\/div>    ",
+          "pageprocessor": "function pageprocessorNewsDetails(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) {$scope.feed =  $rootScope.feeds[$routeParams.index];$scope.openurl = function() {window.open($scope.feed.link, \"_blank\", \"location=no\");};var template = pagedef.datatemplate;var data1 = $compile($(template))($scope);$(\"#appContent\").append(data1);\r\n$scope.trusthtml = function (data) {\r\n        return $sce.trustAsHtml(data);\r\n    }}"
+        },
+        {
+          "pageid": "News",
+          "pageTemplate": "<div><\/div>",
+          "datatemplate": "<div class=\"list-group\" ><a href=\"#app/News/NewsDetails?index={{$index}}\" class=\"list-group-item\" ng-repeat=\"feed in feeds | filter:filterText\"><h4>{{feed.title}}<\/h4><p class=\"text-left\">{{feed.contentSnippet}}<\/p><span class=\"small\">{{feed.publishedDate}}<\/span><\/a><\/div>",
+          "pageprocessor": "function pageprocessorNews(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) {$.blockUI();var feed = new google.feeds.Feed(pagedef.url);feed.setNumEntries(-1);feed.setResultFormat(google.feeds.Feed.JSON);feed.load(function(result) {if(!result.error) {$scope.feeds=result.feed.entries;$rootScope.feeds = result.feed.entries;var data = '<div class=\"row-fluid\"><\/div>';data = $(data).append($(pagedef.datatemplate));var data1 = $compile($(data))($scope);$('#appContent').append(data1);$scope.$apply();$.unblockUI();}});}",
+          "url": "http://nsc.nevada.edu/nscrss.xml"
+        }
+      ]
+    },
+    {
+      "id": 3317,
+      "name": "Courses",
+      "displayname": "Courses",
+      "logo": "Massasoit/Courses.png",
+      "logourl": "Massasoit/Courses.png",
+      "description": "Courses",
+      "appFeatureType": "Public",
+      "roles": "public",
+      "showInDock": false,
+      "showInHome": true,
+      "networkrequired": true,
+      "analytics": false,
+      "pages": 
+      [
+        {
+          "pageid": "Courses",
+          "pageTemplate": "<div><\/div>",
+          "pageprocessor": "function pageprocessorCourses(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) {\r\n    $scope.resultfound = true;\r\n    var data1 = $compile($(pagedef.datatemplate))($scope);\r\n    $(\"#appContent\").append(data1);\r\n    $scope.fetched = false;\r\n    $scope.filterresult = function() {\r\n        var searchTxt = $(\"#Coursestxt\").val();\r\n        $rootScope.Coursesval = searchTxt;\r\n        var results = [];\r\n        var patt = new RegExp(searchTxt, \"i\");\r\n        var filterParams = pagedef.searchfields.split(\",\");\r\n        $.each($scope.CoursesList.Sections, function(index, val) {\r\n            var found = false;\r\n            for (var i = 0; i < filterParams.length; i++) {\r\n                if (val[\"\" + filterParams[i] + \"\"].match(patt)) {\r\n                    found = true;\r\n                    break;\r\n                }\r\n            }\r\n            if (found) {\r\n                results.push(val);\r\n            }\r\n        });\r\n        $rootScope.CoursesResult = results;\r\n        if (results.length > 0) {\r\n            $scope.resultfound = true;\r\n        } else {\r\n            $scope.resultfound = false;\r\n        }\r\n    };\r\n    $scope.search = function() {\r\n        if ($scope.fetched == false) {\r\n            $.blockUI();\r\n            var url = pagedef.url;\r\n            if (window.device) {} else {\r\n                url = \"/websimulator/xml?url=\" + pagedef.url;\r\n            }\r\n            var xhr = $.ajax({\r\n                url: url,\r\n                dataType: \"xml\",\r\n                async: true,\r\n                data: {},\r\n                success: function(resp) {\r\n                    try {\r\n                        var results = $.xml2json(resp);\r\n                        $scope.fetched = true;\r\n                        $scope.CoursesList = results;\r\n                        $scope.filterresult();\r\n                        $scope.$apply();\r\n                        $.unblockUI();\r\n                    } catch (E) {\r\n                        alert(\"Exception : \" + E);\r\n                    }\r\n                },\r\n                error: function(e) {\r\n                    alert(\"Error : \" + e);\r\n                    $.unblockUI();\r\n                    apprise(\"Error occured. Please try again later.\", {\r\n                        \"verify\": false,\r\n                        \"textYes\": \"Ok\"\r\n                    }, function(r) {\r\n                        $window.history.back();\r\n                    });\r\n                }\r\n            });\r\n        } else {\r\n            $scope.filterresult();\r\n        }\r\n    }\r\n}",
+          "url": "http://www.massasoit.mass.edu/campusEAI/courses.xml",
+          "datatemplate": "<div>\r\n    <div class=\"panel panel-primary\" style=\"border:none;background:transparent;\">\r\n        <div class=\"panel-heading\" style=\"background: #083c69; border-color: rgb(0, 0, 0);\">\r\n            <div class=\"input-group container\">\r\n                <input id=\"Coursestxt\" type=\"text\" ng-model=\"Coursesval\" class=\"form-control\" /><span class=\"input-group-btn\">\r\n                  <button ng-click=\"search()\" class=\"btn btn-primary\" type=\"button\" style=\"background:#000\"><span class=\"fa fa-search\"><\/span>\r\n                <\/button>\r\n                <\/span>\r\n            <\/div>\r\n            <div class=\"helptext\">Search by Subject or Course Title<\/div>\r\n        <\/div>\r\n        <div class=\"panel-body\" style=\"padding:0px;background:transparent;\">\r\n            <div class=\"list-group\"><a href=\"#app/Courses/CoursesDetails?index={{$index}}\" class=\"list-group-item\" ng-repeat=\"entry in CoursesResult\"><strong>{{entry.Subject}}<\/strong><p class=\"text-left\">{{entry.CourseTitle}}<\/p><\/a>\r\n            <\/div>\r\n            <div class=\"alert alert-info\" style=\"margin:20%;\" ng-show=\"!resultfound\">No Results found.!<\/div>\r\n        <\/div>\r\n    <\/div>\r\n<\/div>",
+          "searchfields": "Subject, CourseTitle, CourseStartDate, CourseEndDate"
+        },
+        {
+          "pageid": "CoursesDetails",
+          "pageTemplate": "<div><\/div>",
+          "pageprocessor": "function pageprocessorCoursesDetails(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) {$scope.CoursesDetails =  $rootScope.CoursesResult[$routeParams.index];var template = pagedef.datatemplate;var data1 = $compile($(template))($scope);$(\"#appContent\").append(data1);}",
+          "datatemplate": "<div>\r\n    <div class=\"panel panel-primary\" style=\"border-color:#000\">\r\n        <div class=\"panel-heading\" style=\"background: #083c69; border-color: rgb(0, 0, 0);color=#fff;\">\r\n            <span>{{CoursesDetails.Subject}}<\/span>\r\n        <\/div>\r\n        <div class=\"panel-body\">\r\n            <div class=\"list-group\">\r\n                <div class=\"list-group-item\">\r\n                    <h4 class=\"list-group-item-heading small\"><strong>Course Title :<\/strong> {{CoursesDetails.CourseTitle}}<\/h4>\r\n                <\/div>\r\n                <div class=\"list-group-item\">\r\n                    <h4 class=\"list-group-item-heading small\"><strong>Term :<\/strong> {{CoursesDetails.Term}} <\/h4>\r\n                <\/div>\r\n\r\n\r\n                <div class=\"list-group-item\">\r\n                    <h4 class=\"list-group-item-heading small\"><strong>Campus :<\/strong> {{CoursesDetails.Campus}} <\/h4>\r\n                <\/div>\r\n\r\n\r\n                <div class=\"list-group-item\">\r\n                    <h4 class=\"list-group-item-heading small\"><strong>Max Seats :<\/strong> {{CoursesDetails.MaxSeats}} <\/h4>\r\n                <\/div>\r\n                <div class=\"list-group-item\">\r\n                    <h4 class=\"list-group-item-heading small\"><strong>Available Seats  :<\/strong> {{CoursesDetails.AvailableSeats}}<\/h4>\r\n                <\/div>\r\n                <div class=\"list-group-item\">\r\n                    <h4 class=\"list-group-item-heading small\"><strong>Filled Seats  :<\/strong> {{CoursesDetails.FilledSeats}}<\/h4>\r\n                <\/div>\r\n\r\n\r\n                <div class=\"list-group-item\">\r\n                    <h4 class=\"list-group-item-heading small\"><strong>Course Start Date  :<\/strong> {{CoursesDetails.CourseStartDate}}<\/h4>\r\n                <\/div>\r\n\r\n                <div class=\"list-group-item\">\r\n                    <h4 class=\"list-group-item-heading small\"><strong>Course End Date :<\/strong> {{CoursesDetails.CourseEndDate}}<\/h4>\r\n                <\/div>\r\n\r\n\r\n                <div class=\"list-group-item\">\r\n                    <h4 class=\"list-group-item-heading small\"><strong>Add Drop Deadline  :<\/strong> {{CoursesDetails.AddDropDeadline}}<\/h4>\r\n                <\/div>\r\n\r\n                <div class=\"list-group-item\">\r\n                    <h4 class=\"list-group-item-heading small\"><strong>Begin Time  :<\/strong> {{CoursesDetails.BeginTime1}}<\/h4>\r\n                <\/div>\r\n\r\n                <div class=\"list-group-item\">\r\n                    <h4 class=\"list-group-item-heading small\"><strong>EndTime  :<\/strong> {{CoursesDetails.EndTime1}}<\/h4>\r\n                <\/div>\r\n\r\n\r\n                <div class=\"list-group-item\">\r\n                    <h4 class=\"list-group-item-heading small\"><strong>Building and Room  :<\/strong> {{CoursesDetails.Building1}} and {{CoursesDetails.Room1}}<\/h4>\r\n                <\/div>\r\n\r\n\r\n\r\n                <div class=\"list-group-item\">\r\n                    <h4 class=\"list-group-item-heading small\"><strong>Instructor Name :<\/strong> {{CoursesDetails.Instructor}} <\/h4>\r\n                <\/div>\r\n            <\/div>\r\n        <\/div>\r\n    <\/div>\r\n<\/div>"
+        }
+      ]
+    },
+    {
+      "id": 3320,
+      "name": "Events",
+      "displayname": "Events",
+      "logo": "Massasoit/Events.png",
+      "logourl": "Massasoit/Events.png",
+      "description": "Campus Event calendar",
+      "appFeatureType": "Public",
+      "roles": "public",
+      "showInDock": false,
+      "showInHome": true,
+      "networkrequired": true,
+      "analytics": false,
+      "pages": 
+      [
+        {
+          "pageid": "EventsDetails",
+          "pageTemplate": "<div class=\"row-fluid\"><\/div>",
+          "pageprocessor": "function pageprocessorEventsDetails(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) {\r\n    $scope.title = $rootScope.Eventsdata[$routeParams.index].title;\r\n    $scope.displaydate = $rootScope.Eventsdata[$routeParams.index].displaydate;\r\n    $scope.description = $rootScope.Eventsdata[$routeParams.index].description;\r\n    $scope.link = $rootScope.Eventsdata[$routeParams.index].link;\r\n    $scope.trustHtml = function(dt) {\r\n        return $sce.trustAsHtml(dt);\r\n    }\r\n    $scope.openurl = function() {\r\n        window.open($scope.link, \"_blank\", \"location=no\");\r\n    };\r\n    var data = pagedef.pageTemplate;\r\n    data = $(data).append($(pagedef.datatemplate));\r\n    var data1 = $compile($(data))($scope);\r\n    $(\"#appContent\").append(data1);\r\n}",
+          "datatemplate": "<div class=\"jumbotron\">\r\n    <h4 class=\"page-header\">{{title}}<\/h4>\r\n    <p class=\"small\" ng-bind-html=\"trustHtml(description);\"><\/p><a class=\"btn btn-primary btn-block\" ng-click=\"openurl();\">View Web Site<\/a>\r\n<\/div>"
+        },
+        {
+          "pageid": "Events",
+          "pageTemplate": "<div id=\"EventsListData\"><\/div>",
+          "datatemplate": "<li><a class=\"list-group-item\" href=\"#app/Events/EventsDetails?title={{title}}&displaydate={{displaydate}}& description={{description}}&link={{link}}&index={{index}}\"><h4>{{title}}<\/h4><p>Event starts at: {{displaydate}}<\/p><\/a><\/li>",
+          "pageprocessor": "function pageprocessorEvents(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) {$.blockUI();var url = pagedef.url;if(window.device) {}else {url = \"/websimulator/xml?url=\" + pagedef.url;}$http.get(url, {\"responseType\" : \"xml\",\"transformResponse\" : function(data) {var jsonData = $.xml2json(data);return jsonData;} } ).success(function(results){var data = [];var index = 0;$.each(results.channel.item, function(key,val) {index = index+1;data.push({\"link\" : val.link,\"displaydate\" : val.pubDate, \"date\" : new Date(val.pubDate).getTime().toString(), \"title\" : val.title, \"description\" : val.description, \"index\" : index});});$rootScope.Eventsdata = data;$(\"#appContent\").append($(pagedef.pageTemplate));$(\"#EventsListData\").eventCalendar({jsonData: data,showDescription : true,dataTemplate : pagedef.datatemplate});$.unblockUI();}).error ( function(data, status, headers, config) {$.unblockUI();apprise(\"Error occured. Please try again later.\", {\"verify\":false, \"textYes\":\"Ok\"}, function(r) {$window.history.back();});});}",
+          "url": "https://events.brenau.edu/MasterCalendar/RSSFeeds.aspx?Name=MasterCalendar"
+        }
+      ]
+    },
+    {
+      "id": 3326,
+      "name": "Map",
+      "displayname": "Map",
+      "logo": "Massasoit/Map.png",
+      "logourl": "Massasoit/Map.png",
+      "description": "Camps Map",
+      "appFeatureType": "Public",
+      "roles": "public",
+      "showInDock": false,
+      "showInHome": true,
+      "networkrequired": true,
+      "analytics": false,
+      "pages": 
+      [
+        {
+          "pageid": "Map",
+          "pageTemplate": "<div id=\"MapMapCanvas\" style=\"width:100%;height:99%;position:absolute;\"><\/div>",
+          "mapzoom": "14",
+          "mapmarkers": "{\r\n    \"map00\": {\r\n        \"lat\": \"42.074176\",\r\n        \"long\": \"-70.989795\",\r\n        \"desc\": \"Administration Building, Brockton Campus\",\r\n        \"keyword\": \"Admissions, Financial Aid, Registration, President's Office, Administration, Human Resources, Diversity\"\r\n    },\r\n    \"map01\": {\r\n        \"lat\": \"42.075227\",\r\n        \"long\": \"-70.989473\",\r\n        \"desc\": \"Student Center Building, Library and Cafeteria, Brockton Campus\",\r\n        \"keyword\": \"Student Center, Library, Cafeteria, Campus Police, Luison Board Room\"\r\n    },\r\n    \"map03\": {\r\n        \"lat\": \"42.075590\",\r\n        \"long\": \"-70.990300\",\r\n        \"desc\": \"Business Building, Brockton Campus\"\r\n    },\r\n    \"map04\": {\r\n        \"lat\": \"42.076748\",\r\n        \"long\": \"-70.988937\",\r\n        \"desc\": \"Fine Arts Building, Theatre, Brockton Campus\"\r\n    },\r\n    \"map05\": {\r\n        \"lat\": \"42.075900\",\r\n        \"long\": \"-70.987585\",\r\n        \"desc\": \"Field House, Brockton Campus\",\r\n        \"keyword\": \"Gymnasium, Pool, Athletics, Sports\"\r\n    },\r\n    \"map06\": {\r\n        \"lat\": \"42.075908\",\r\n        \"long\": \"-70.989141\",\r\n        \"desc\": \"Liberal Arts Building, Brockton Campus\"\r\n    },\r\n    \"map07\": {\r\n        \"lat\": \"42.076080\",\r\n        \"long\": \"-70.988433\",\r\n        \"desc\": \"Humanities Building, Brockton Campus\"\r\n    },\r\n    \"map08\": {\r\n        \"lat\": \"42.076275\",\r\n        \"long\": \"-70.990396\",\r\n        \"desc\": \"Science Building, Brockton Campus\"\r\n    },\r\n    \"map09\": {\r\n        \"lat\": \"42.076402\",\r\n        \"long\": \"-70.989613\",\r\n        \"desc\": \"Technology Building, Brockton Campus\"\r\n    },\r\n    \"map10\": {\r\n        \"lat\": \"42.078082\",\r\n        \"long\": \"-70.9894793\",\r\n        \"desc\": \"Maintenance Building, Brockton Campus\"\r\n    },\r\n    \"map11\": {\r\n        \"lat\": \"42.081921\",\r\n        \"long\": \"-70.987945\",\r\n        \"desc\": \"The Conference Center, Brockton\",\r\n        \"keyword\": \"Massasoit Conference Center\"\r\n    },\r\n    \"map12\": {\r\n        \"lat\": \"42.183702\",\r\n        \"long\": \"-71.101004\",\r\n        \"desc\": \"Massasoit Community College, Canton Campus\",\r\n        \"keyword\": \"Massasoit Community College, Canton Campus\"\r\n    },\r\n    \"map13\": {\r\n        \"lat\": \"41.892244\",\r\n        \"long\": \"-70.912123\",\r\n        \"desc\": \"Massasoit Community College, Middleborough\",\r\n        \"keyword\": \"Massasoit Community College, Middleborough Campus\"\r\n    }\r\n}",
+          "mapcenter": "42.183702,-70.989795",
+          "pageprocessor": "function pageprocessorMap(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) {\r\n    $(\"#appContent\").append($(pagedef.pageTemplate));\r\n    try {\r\n        var cb = function () {\r\n            $(\"#MapMapCanvas\").gmap({\r\n                \"center\": pagedef.mapcenter,\r\n                \"zoom\": parseInt(pagedef.mapzoom),\r\n                \"disableDefaultUI\": false,\r\n                \"callback\": function () {\r\n                    var self = this;\r\n                    var i = 0;\r\n                    if (pagedef.mapmarkers) {\r\n                        var markers = $.parseJSON(pagedef.mapmarkers);\r\n                        console.log(markers);\r\n                        i = 0;\r\n                        $.each(markers, function (key, val) {\r\n                            setTimeout(function () {\r\n                                self.addMarker({\r\n                                    \"position\": val.lat + \",\" + val.long,\r\n                                    \"animation\": google.maps.Animation.DROP\r\n                                }).click(function () {\r\n                                    self.openInfoWindow({\r\n                                        \"content\": val.desc\r\n                                    }, this);\r\n                                });\r\n                            }, i * 200);\r\n                            i++;\r\n                        });\r\n                    }\r\n                }\r\n            });\r\n        };\r\n        window.cb = cb;\r\n        $.getScript(\"https://maps.googleapis.com/maps/api/js?key=AIzaSyDUbP_Qxh9wbPOvgW8iH_zuLu8K3fSlv0I&sensor=false&callback=cb\");\r\n    } catch (e) {\r\n        alert(e);\r\n    }\r\n}"
+        }
+      ]
+    },
+    {
+      "id": 3329,
+      "name": "Facebook",
+      "displayname": "Facebook",
+      "logo": "Massasoit/Facebook.png",
+      "logourl": "Massasoit/Facebook.png",
+      "description": "Facebook",
+      "appFeatureType": "Public",
+      "roles": "public",
+      "showInDock": false,
+      "showInHome": true,
+      "networkrequired": true,
+      "analytics": false,
+      "pages": 
+      [
+        {
+          "pageid": "Facebook",
+          "pageTemplate": "<div><\/div>",
+          "url": "https://www.facebook.com/Massasoit",
+          "pageprocessor": "function pageprocessorFacebook(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) {\r\n   if(window.device) {\r\n      $.blockUI();\r\n   }\r\n\r\n    var iabRef = window.open(pagedef.url, \"_blank\", \"location=no,hidden=yes\");\r\n    var hideBlockUi = function() {\r\n        iabRef.show();\r\n        $.unblockUI();\r\n    };\r\n\r\n    var iabClose = function(data) {\r\n        window.location.href = \"index.html#home\";\r\n    };\r\n    iabRef.addEventListener(\"exit\", iabClose);\r\n  \r\n    var loadStop = function(data) {\r\n    \thideBlockUi();\r\n\r\n    };\r\n    iabRef.addEventListener(\"loadstop\", loadStop);\r\n\r\n}"
+        }
+      ]
+    },
+    {
+      "id": 3335,
+      "name": "Directory",
+      "displayname": "Directory",
+      "logo": "Massasoit/Directory.png",
+      "logourl": "Massasoit/Directory.png",
+      "description": "Directory",
+      "appFeatureType": "Public",
+      "roles": "public",
+      "showInDock": false,
+      "showInHome": true,
+      "networkrequired": true,
+      "analytics": false,
+      "pages": 
+      [
+        {
+          "pageid": "Directory",
+          "pageTemplate": "<div><\/div>",
+          "searchfields": null,
+          "datatemplate": "<div><div class=\"panel panel-primary\"><div class=\"panel-heading\"><div class=\"input-group container\"><input id=\"Directorytxt\" type=\"text\" ng-model=\"Directoryval\"  class=\"form-control\"/><span class=\"input-group-btn\"><button ng-click=\"search()\" class=\"btn btn-primary\" type=\"button\"><span class=\"glyphicon glyphicon-search\"><\/span><\/button><\/span><\/div><\/div><div class=\"panel-body\" style=\"padding:0px;\"><div class=\"list-group\"><a href=\"#app/Directory/DirectoryDetails?index={{$index}}\" class=\"list-group-item\" ng-repeat=\"entry in DirectoryResult\"><strong>{{entry.field1}}, {{entry.field2}}<\/strong><p class=\"text-left\">{{entry.field3}}<\/p><\/a><\/div><div class=\"alert alert-info\" style=\"margin:20%;\" ng-show=\"!resultfound\">No Results found.!<\/div><\/div><\/div><\/div>",
+          "pageprocessor": "function pageprocessorDirectory(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) {$scope.resultfound = true;var data1 = $compile($(pagedef.datatemplate))($scope);$(\"#appContent\").append(data1);$scope.fetched = false;$scope.filterresult = function() {var searchTxt = $(\"#Directorytxt\").val();$rootScope.Directoryval = searchTxt;var results = [];var patt = new RegExp(searchTxt, \"i\");var filterParams = pagedef.searchfields.split(\",\");$.each($scope.DirectoryList.item, function(index, val){var found=false;for(var i=0;i<filterParams.length;i++) {if(val[ \"\" + filterParams[i] + \"\"].match(patt)) {found=true;break;}}if(found) {results.push(val);}});$rootScope.DirectoryResult = results;if(results.length > 0) {$scope.resultfound = true;}else {$scope.resultfound = false;}   };$scope.search = function() {if($scope.fetched == false) {$.blockUI();var url = pagedef.url;if(window.device) {}else {url = \"/websimulator/xml?url=\" + pagedef.url;}var xhr=$.ajax({url: url,dataType:\"xml\",async:true,data:{},success: function(resp){try {var results = $.xml2json(resp);$scope.fetched = true;$scope.DirectoryList = results;$scope.filterresult();$scope.$apply();$.unblockUI();}catch(E) {alert (\"Exception : \" + E);}},error: function(e) {alert (\"Error : \" + e);$.unblockUI();apprise(\"Error occured. Please try again later.\", {\"verify\":false, \"textYes\":\"Ok\"}, function(r) {$window.history.back();});}});}else {$scope.filterresult();}}}",
+          "url": null
+        },
+        {
+          "pageid": "DirectoryDetails",
+          "pageTemplate": "<div><\/div>",
+          "datatemplate": "<div><div class=\"panel panel-primary\"><div class=\"panel-heading\"><span>{{DirectoryDetails.title1}} - {{DirectoryDetails.title2}}<\/span><\/div><div class=\"panel-body\"><div class=\"list-group\"><div class=\"list-group-item\"><h4 class=\"list-group-item-heading small\"><strong>Field Label:<\/strong> {{DirectoryDetails.field1}}<\/h4><\/div><\/div><\/div><\/div><\/div>",
+          "pageprocessor": "function pageprocessorDirectoryDetails(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) {$scope.DirectoryDetails =  $rootScope.DirectoryResult[$routeParams.index];var template = pagedef.datatemplate;var data1 = $compile($(template))($scope);$(\"#appContent\").append(data1);}"
+        }
+      ]
+    },
+    {
+      "id": 3338,
+      "name": "Emergency",
+      "displayname": "Emergency",
+      "logo": "Massasoit/Emergency.png",
+      "logourl": "Massasoit/Emergency.png",
+      "description": "Emergency Contact",
+      "appFeatureType": "Public",
+      "roles": "public",
+      "showInDock": false,
+      "showInHome": true,
+      "networkrequired": true,
+      "analytics": false,
+      "pages": 
+      [
+        {
+          "pageid": "Emergency",
+          "pageTemplate": "<style>#branding{display:none;}<\/style> <div class=\"well\" style=\"background:transparent;padding:10px;\">     <div class=\"list-group\"> <a class=\"list-group-item active panel-title\" style=\"background:#00458A;color:#fff;\">Emergency Number<\/a>  <a href=\"tel:{{contact.number}}\" class=\"list-group-item\" ng-repeat=\"contact in contacts.Contacts \">       {{contact.name}} <i class=\"fa fa-chevron-circle-right pull-right fa-2x\"><\/i>       <br/> <i class=\"fa fa-phone\"><\/i>&nbsp;&nbsp;{{contact.number}}<\/a>      <\/div> <\/div>",
+          "contactdetails": "{\"Contacts\" : [ {\"name\" : \"Emergency\", \"number\" : \"911\"}, {\"name\" : \"Emergency\", \"number\" : \"911\"} ] }",
+          "pageprocessor": "function pageprocessorEmergency(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) {$scope.contacts = $.parseJSON(pagedef.contactdetails);   var data1 = $compile($(pagedef.pageTemplate))($scope);$(\"#appContent\").append(data1);}"
+        }
+      ]
+    },
+    {
+      "id": 3341,
+      "name": "Twitter",
+      "displayname": "Twitter",
+      "logo": "Massasoit/Twitter.png",
+      "logourl": "Massasoit/Twitter.png",
+      "description": "Twitter",
+      "appFeatureType": "Public",
+      "roles": "public",
+      "showInDock": false,
+      "showInHome": true,
+      "networkrequired": true,
+      "analytics": false,
+      "pages": 
+      [
+        {
+          "pageid": "Twitter",
+          "pageTemplate": "<div><\/div>",
+          "pageprocessor": "function pageprocessorTwitter(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) {\r\n   if(window.device) {\r\n      $.blockUI();\r\n   }\r\n    var iabRef = window.open(pagedef.url, \"_blank\", \"location=no,hidden=yes\");\r\n    var hideBlockUi = function() {\r\n        iabRef.show();\r\n        $.unblockUI();\r\n    };\r\n\r\n    var iabClose = function(data) {\r\n        window.location.href = \"index.html#home\";\r\n    };\r\n    iabRef.addEventListener(\"exit\", iabClose);\r\n\r\n    var loadStop = function(data) {\r\n        hideBlockUi();\r\n\r\n    };\r\n    iabRef.addEventListener(\"loadstop\", loadStop);\r\n}",
+          "url": "https://twitter.com/massasoittweets"
+        }
+      ]
+    },
+    {
+      "id": 3344,
+      "name": "Videos",
+      "displayname": "Videos",
+      "logo": "Massasoit/Videos.png",
+      "logourl": "Massasoit/Videos.png",
+      "description": "Campus Videos",
+      "appFeatureType": "Public",
+      "roles": "public",
+      "showInDock": false,
+      "showInHome": true,
+      "networkrequired": true,
+      "analytics": false,
+      "pages": 
+      [
+        {
+          "pageid": "VideosVideosDetails",
+          "pageTemplate": "<div><\/div>",
+          "datatemplate": "<div class=\"container\"><h4>{{title}}<\/h4><div style=\"align:center\"><iframe class=\"well\" ng-src=\"{{trustSrc()}}\" frameborder=\"0\" allowfullscreen target=\"self\"><\/iframe><\/div><h5>{{description}}<\/h5><\/div>",
+          "pageprocessor": "function pageprocessorVideosVideosDetails(pagedef, $scope, $routeParams, $compile, $http, $rootScope,$sce, $window, $location) { var video = $rootScope.videos[$routeParams.index];$scope.video = video; $scope.title=video.title.$t;var temp = video.id.$t;var tempId = temp.substring(temp.lastIndexOf(\"/\") + 1);$scope.id = tempId;$scope.trustSrc = function() {return $sce.trustAsResourceUrl(\"http://www.youtube.com/embed/\" + tempId);};$scope.description=video.media$group.media$description.$t;var data1 = $compile($(pagedef.datatemplate))($scope);$(\"#appContent\").append(data1);}"
+        },
+        {
+          "pageid": "Videos",
+          "pageTemplate": "<div><\/div>",
+          "pageprocessor": "function pageprocessorVideos(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) { $.blockUI();$http.get(pagedef.url).success( function(data) {$scope.videos = data.feed.entry;$rootScope.videos = data.feed.entry;var data1 = $compile($(pagedef.datatemplate))($scope);$(\"#appContent\").append(data1);$.unblockUI();}).error ( function(data) {$.unblockUI();});}",
+          "url": "https://gdata.youtube.com/feeds/api/videos?max-results=50&alt=json&q=MassasoitTV%20Youtube&orderby=published&format=5&author=MassasoitTV",
+          "datatemplate": "<div class=\"media-list list-group\"><a href=\"#app/Videos/VideosVideosDetails?index={{$index}}\" class=\"media list-group-item\" ng-repeat=\"video in videos\"><div class=\"pull-left\"><img class=\"media-object\"  src=\"{{video.media$group.media$thumbnail.1.url}}\"><\/img><\/div><div class=\"media-body\"><h4 class=\"media-heading\">{{video.title.$t}}<\/h4><p class=\"disabled\">Updated on {{video.updated.$t}}<\/p><p class=\"disabled\">{{video.yt$statistics.viewCount}} views<\/p><\/div><\/a><\/div>"
+        }
+      ]
+    },
+    {
+      "id": 3347,
+      "name": "ClassCancellations",
+      "displayname": "Class Cancellations",
+      "logo": "Massasoit/ClassCancellations.png",
+      "logourl": "Massasoit/ClassCancellations.png",
+      "description": "Class Cancellations",
+      "appFeatureType": "Public",
+      "roles": null,
+      "showInDock": false,
+      "showInHome": true,
+      "networkrequired": true,
+      "analytics": false,
+      "pages": 
+      [
+        {
+          "pageid": "ClassCancellations",
+          "pageTemplate": "<div><\/div>",
+          "pageprocessor": "function pageprocessorClassCancellations(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) {$.blockUI();var feed = new google.feeds.Feed(pagedef.url);feed.setNumEntries(-1);feed.setResultFormat(google.feeds.Feed.JSON);feed.load(function(result) {if(!result.error) {$scope.feeds=result.feed.entries;$rootScope.feeds = result.feed.entries;var data = '<div class=\"row-fluid\"><\/div>';data = $(data).append($(pagedef.datatemplate));var data1 = $compile($(data))($scope);$('#appContent').append(data1);$scope.$apply();$.unblockUI();}});}",
+          "url": "http://2977-provod.massasoit.mass.edu/Carousel/Public/PublicSiteRSS.aspx?ZoneID=23",
+          "datatemplate": "<div class=\"list-group\" ><a href=\"#app/ClassCancellations/ClassCancellationsDetails?index={{$index}}\" class=\"list-group-item\" ng-repeat=\"feed in feeds | filter:filterText\"><h4>{{feed.title}}<\/h4><p class=\"text-left\">{{feed.contentSnippet}}<\/p><span class=\"small\">{{feed.publishedDate}}<\/span><\/a><\/div>"
+        },
+        {
+          "pageid": "ClassCancellationsDetails",
+          "pageTemplate": "<div><\/div>",
+          "datatemplate": "<div class=\"jumbotron\"><h4 class=\"page-header\">{{feed.title}}<\/h4><p class=\"small\" ng-bind-html=\"trustHtml(feed.content);\"><\/p><p class=\"small\">Published on : {{feed.publishedDate}}<\/p><a class=\"btn btn-primary btn-block\" ng-click=\"openurl();\">View Web Site<\/a><\/div>",
+          "pageprocessor": "function pageprocessorClassCancellationsDetails(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) {$scope.feed =  $rootScope.feeds[$routeParams.index];$scope.openurl = function() {window.open($scope.feed.link, \"_blank\", \"location=no\");};var template = pagedef.datatemplate;var data1 = $compile($(template))($scope);$(\"#appContent\").append(data1);$scope.trustHtml = function(dt) { return $sce.trustAsHtml(dt);}}"
+        }
+      ]
+    },
+    {
+      "id": 3350,
+      "name": "Library5",
+      "displayname": "Library",
+      "logo": "Massasoit/Library5.png",
+      "logourl": "Massasoit/Library5.png",
+      "description": "Library",
+      "appFeatureType": "Public",
+      "roles": null,
+      "showInDock": false,
+      "showInHome": true,
+      "networkrequired": true,
+      "analytics": false,
+      "pages": 
+      [
+        {
+          "pageid": "Library5",
+          "pageTemplate": "<div><\/div>",
+          "url": "http://feeds.feedburner.com/fairfieldulibrary ",
+          "pageprocessor": "function pageprocessorLibrary5(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) { if(window.device){$.blockUI();} var iabRef = window.open(pagedef.url, \"_blank\", \"location=no,hidden=yes\");var hideBlockUi = function() {iabRef.show();$.unblockUI();};var iabClose = function(data) {window.location.href = \"index.html#home\";};iabRef.addEventListener(\"exit\", iabClose);var loadStop = function(data) {hideBlockUi();  };iabRef.addEventListener(\"loadstop\", loadStop);}"
+        }
+      ]
+    },
+    {
+      "id": 3353,
+      "name": "Athletics8",
+      "displayname": "Athletics",
+      "logo": "Massasoit/Athletics8.png",
+      "logourl": "Massasoit/Athletics8.png",
+      "description": "Athletics",
+      "appFeatureType": "Public",
+      "roles": null,
+      "showInDock": false,
+      "showInHome": true,
+      "networkrequired": true,
+      "analytics": false,
+      "pages": 
+      [
+        {
+          "pageid": "Athletics8",
+          "pageTemplate": "<div><\/div>",
+          "url": "http://www.LIpscomb.com/rss.php",
+          "pageprocessor": "function pageprocessorAthletics8(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) { if(window.device){$.blockUI();} var iabRef = window.open(pagedef.url, \"_blank\", \"location=no,hidden=yes\");var hideBlockUi = function() {iabRef.show();$.unblockUI();};var iabClose = function(data) {window.location.href = \"index.html#home\";};iabRef.addEventListener(\"exit\", iabClose);var loadStop = function(data) {hideBlockUi();  };iabRef.addEventListener(\"loadstop\", loadStop);}"
+        }
+      ]
+    },
+    {
+      "id": 3356,
+      "name": "Radio2",
+      "displayname": "Radio",
+      "logo": "Massasoit/Radio2.png",
+      "logourl": "Massasoit/Radio2.png",
+      "description": "Radio",
+      "appFeatureType": "Public",
+      "roles": null,
+      "showInDock": false,
+      "showInHome": true,
+      "networkrequired": true,
+      "analytics": false,
+      "pages": 
+      [
+        {
+          "pageid": "Radio2",
+          "pageTemplate": "<div><\/div>",
+          "url": "http://station.voscast.com/4cfb5148bb739/",
+          "pageprocessor": "function pageprocessorRadio2(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) { if(window.device){$.blockUI();} var iabRef = window.open(pagedef.url, \"_blank\", \"location=no,hidden=yes\");var hideBlockUi = function() {iabRef.show();$.unblockUI();};var iabClose = function(data) {window.location.href = \"index.html#home\";};iabRef.addEventListener(\"exit\", iabClose);var loadStop = function(data) {hideBlockUi();  };iabRef.addEventListener(\"loadstop\", loadStop);}"
+        }
+      ]
+    },
+    {
+      "id": 3359,
+      "name": "Photos23",
+      "displayname": "Photos",
+      "logo": "Massasoit/Photos23.png",
+      "logourl": "Massasoit/Photos23.png",
+      "description": "Photos",
+      "appFeatureType": "Public",
+      "roles": null,
+      "showInDock": false,
+      "showInHome": true,
+      "networkrequired": true,
+      "analytics": false,
+      "pages": 
+      [
+        {
+          "pageid": "Photos23",
+          "pageTemplate": "<div><\/div>",
+          "url": "http://massasoit.zenfolio.com/ ",
+          "pageprocessor": "function pageprocessorPhotos23(pagedef, $scope, $routeParams, $compile, $http, $rootScope, $sce, $window, $location) { if(window.device){$.blockUI();} var iabRef = window.open(pagedef.url, \"_blank\", \"location=no,hidden=yes\");var hideBlockUi = function() {iabRef.show();$.unblockUI();};var iabClose = function(data) {window.location.href = \"index.html#home\";};iabRef.addEventListener(\"exit\", iabClose);var loadStop = function(data) {hideBlockUi();  };iabRef.addEventListener(\"loadstop\", loadStop);}"
+        }
+      ]
+    }
+  ],
+  "pages": 
+  [
+  ]
+}
