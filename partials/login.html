@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="1container" style="padding:5px;">
-                <form role="form">
+                <form role="form" ng-submit="login();">
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon"><span class="fa fa-user"></span></span>
@@ -28,7 +28,7 @@
                     <div id="fgpassword" ng-click="forgotpassword();" class="pull-right"
                          style="cursor:pointer;color:#fff;padding-bottom:10px;font-weight:bold;">Forgot Password?
                     </div>
-                    <button id="loginbtn" type="button" class="btn btn-primary btn-lg btn-block" ng-click="login();">
+                    <button id="loginbtn" type="submit" class="btn btn-primary btn-lg btn-block" >
                         Login
                     </button>
                 </form>
