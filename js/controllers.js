@@ -302,7 +302,7 @@ angular.module('myApp.controllers', []).
 
                     for (_i = 0, _len = allIcons.length; _i < _len; _i++) {
                         icon = allIcons[_i];
-                        var markup = '<li class='dashboardIcon''><a href="' + icon.url + '"><img src="' + icon.logourl + '" class="icon"></img></a>' +
+                        var markup = '<li class='dashboardIcon'><a href="' + icon.url + '"><img src="' + icon.logourl + '" class="icon"></img></a>' +
                             '<div class="campuseai-Info text-center" style="width:' + calculated + 'px;overflow:hidden;text-overflow: ellipsis;">'
                             + icon.title + '</div></li>';
                         homedata.append(markup);
