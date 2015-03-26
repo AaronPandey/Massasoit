@@ -7,6 +7,13 @@
 .help-img {
     box-shadow:0 0 10px #000;
 }
+
+.list-group-item.active{
+    background:#003366;
+    color:#fff;
+}
+
+
 </style>
 <div class="scrollable">
     <div class="scrollable-content">
@@ -22,7 +29,7 @@
                     <button class="btn btn-success" ng-click="gohome();">Press Me</button> to go to the Home screen.
                 </div>
             </div>
-            <a class="list-group-item active">Navigation - Home screen</a>
+            <div class="list-group-item active">Navigation - Home screen</div>
             <div class="list-group-item">
                 <p class="help-text">
                     Tap on the left top left corner to launch the side bar navigation.
@@ -30,32 +37,32 @@
                     For non homescreen pages, the arrow icon displayed at the top right corner will take you back to the
                     previous page.
                 </p>
-                <img class="help-img" src="img/help1.png" style="width:100%;height:100%;"/>
+                <img class="help-img" src="img/help1.png" style="width:100%;"/>
             </div>
             <div class="list-group-item">
                 <p class="help-text">
                     Swipe right to navigate to the next page apps.
                     Swipe left to navigate to the previous page.
                 </p>
-                <img class="help-img" src="img/help2.png" style="width:100%;height:100%;"/>
+                <img class="help-img" src="img/help2.png" style="width:100%;"/>
             </div>
 
-            <a class="list-group-item active">Launching the Apps</a>
+            <div class="list-group-item active">Launching the Apps</div>
             <div class="list-group-item">
                 <p class="help-text">
-                    <h3>Three ways to launch the apps<br></h3>
+                    <h3>Two ways to launch the apps<br></h3>
                     <i class="fa fa-check"></i>&nbsp;Home screen app icons<br>
                     <i class="fa fa-check"></i>&nbsp;Sidebar menu<br>
-                    <i class="fa fa-check"></i>&nbsp;Dock icon<br>
+                    <!--<i class="fa fa-check"></i>&nbsp;Dock icon<br>-->
                 </p>
             </div>
-            <a class="list-group-item active">Report an issue</a>
+            <div class="list-group-item active">Report an issue</div>
             <div class="list-group-item">
                 <p class="help-text">
                     If you encounter an issue with the app, please use the ‘Report Issue’ option located in the sidebar menu. Please attach screenshots if possible to this message.
                 </p>
             </div>
-            <a class="list-group-item active">Troubleshooting</a>
+            <div class="list-group-item active">Troubleshooting</div>
             <div class="list-group-item">
                 <p class="help-text">
                     If the MyMassasoit App fails to function properly, user the Troubleshooting option located in the sidebar menu. (You must select yes when prompted to proceed with an application reset) Do not minimize or close the application during this process.
