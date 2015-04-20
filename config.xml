@@ -98,5 +98,8 @@
                 <string>Allow GPS</string>
             </array>
         </gap:config-file>
+<<<<<<< HEAD
         <gap:config-file platform="ios" parent="CFBundleShortVersionString"><string>1.0.1</string></gap:config-file>
+=======
+>>>>>>> aef972afbf1a367769528e4fd42bd55f62b1e69d
     </widget>
