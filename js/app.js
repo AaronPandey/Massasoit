@@ -45,18 +45,22 @@ var onDeviceReady = function() {
     var handleOrientation = function() {
         if (orientation == 0) {
             if(MyCampusApp.homeScreenDisplayed) {
+                MyCampusApp.currentPage = 1;
                 setTimeout(function(){MyCampusApp.homeRoute.reload()},500);
             }
         } else if (orientation == 90) {
             if(MyCampusApp.homeScreenDisplayed) {
+                MyCampusApp.currentPage = 1;
                 setTimeout(function(){MyCampusApp.homeRoute.reload()},500);
             }
         } else if (orientation == -90) {
             if(MyCampusApp.homeScreenDisplayed) {
+                MyCampusApp.currentPage = 1;
                 setTimeout(function(){MyCampusApp.homeRoute.reload()},500);
             }
         } else if (orientation == 180) {
             if(MyCampusApp.homeScreenDisplayed) {
+                MyCampusApp.currentPage = 1;
                 setTimeout(function(){MyCampusApp.homeRoute.reload()},500);
             }
         } else {}
@@ -85,6 +89,7 @@ var MyCampusApp = {
     modalDialogDisplayed: false,
     homeScreenDisplayed : true,
     rootScope : null,
+    currentPage : 1,
     //debugMode: window.tinyHippos != undefined,
 
     init : function(){
@@ -158,6 +163,35 @@ var MyCampusApp = {
             }).error(function(data){
                 });
         }
+        
+        //Store update bug fix start (Nick)
+        else {
+			if(!$rootScope.imageoptimized) {
+				$http.get("default-metadata.json").success(function(data){
+                                                           $rootScope.imageoptimized = true;
+                                                           if(data.version >= storedMetadata.version) {
+                                                           var tenantid = data.tenantid
+                                                           $.jStorage.set(tenantid + '-metadata', data);
+                                                           MyCampusApp.config.tenant = tenantid;
+                                                           $rootScope.tenant = tenantid;
+                                                           $.jStorage.set('tenant', tenantid);
+                                                           storedMetadata = data;
+                                                           $rootScope.brandingUrl = storedMetadata.brandingurl + "?q=" + Math.random();
+                                                           $rootScope.backgroundUrl = storedMetadata.backgroundurl + "?q=" + Math.random();
+                                                           var message = '<div style="margin: auto; vertical-align: middle; display: inline-block;position:fixed;left:0px;right:0px;"><i class="icon-cog icon-spin icon-4x"></i><h3 style="color:white;">Starting up</h3></div>';
+                                                           $.blockUI({message : message});
+                                                           setTimeout(function() {
+                                                                      $.unblockUI();
+                                                                      $route.reload();
+                                                                      },5000);
+                                                           }
+                                                           }).error(function(data){
+                                                                    });
+			}
+		}
+        //Store update bug fix end (Nick)
+        
+        
         if(storedMetadata) {
             if($rootScope.loggedin) {
                 if($rootScope.userroles) {
@@ -529,6 +563,8 @@ var MyCampusApp = {
             icon = dockIcons[_i];
             _results.push(dock.append(icon.markup));
         }
+        
+        /* Commenting for icon refresh during metadata update start.(Nick)
         var homedata = $("#homedata");
         homedata.html("");
         var iconwidth = 64;
@@ -548,6 +584,7 @@ var MyCampusApp = {
                 + icon.title + '</div></li>';
             homedata.append(markup);
         }
+         
 
         //AK added for promptumenu
         $("#homedata").promptumenu({
@@ -558,6 +595,7 @@ var MyCampusApp = {
             direction: 'horizontal',
             pages: true
         });
+         Commenting for icon refresh during metadata update end*/
         //End AK
         /*
          if(window.device) {
