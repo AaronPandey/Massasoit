@@ -17,6 +17,7 @@ angular.module('myApp.controllers', []).
             if (window.device) {
                 window.plugin.email.open({
                     to: [$rootScope.metadata.reportissueEmail],
+                    cc:["support@kryptosmobile.com"],
                     subject: 'myCampus Mobile ( ' + $rootScope.tenant + ' ) Issue reporting',
                     body: '\n\n\n\n\n\n\n<h3>Device Details</h3><br/><p>' +
                         'Platform : ' + window.device.platform + '<br/>' +
@@ -39,6 +40,7 @@ angular.module('myApp.controllers', []).
             if (window.device) {
                 window.plugin.email.open({
                     to: [$rootScope.metadata.feedbackEmail],
+                    cc:["support@kryptosmobile.com"],
                     subject: 'myCampus Mobile ( ' + $rootScope.tenant + ' ) Feedback',
                     body: '\n\n\n\n\n\n\n<h3>Device Details</h3><br/><p>' +
                         'Platform : ' + window.device.platform + '<br/>' +
@@ -83,7 +85,7 @@ angular.module('myApp.controllers', []).
                 if (window.device) {
                     $.blockUI();
                 }
-                var iabRef = window.open(url, "_blank", "location=no,hidden=yes");
+                var iabRef = window.open(url, "_blank", "location=yes,EnableViewPortScale=yes");
                 var hideBlockUi = function() {
                     iabRef.show();
                     $.unblockUI();
@@ -102,11 +104,11 @@ angular.module('myApp.controllers', []).
             $("#loginUsername").focus();
             $rootScope.login = function () {
                 if ($("#loginUsername").val().length == 0) {
-                    alert('Please enter your username.');
+                    navigator.notification.alert('Please enter your username');
                     return false;
                 }
                 if ($("#loginPassword").val().length == 0) {
-                    alert('Please enter your password.');
+                    navigator.notification.alert('Please enter your password');
                     return false;
                 }
                 var username = $("#loginUsername").val();
@@ -604,11 +606,11 @@ angular.module('myApp.controllers', []).
 
 			$scope.login = function() {
  				if ($("#loginUsername").val().length == 0) {
-                    alert('Please enter your username.');
+                    navigator.notification.alert('Please enter your username');
                     return false;
                 }
                 if ($("#loginPassword").val().length == 0) {
-                    alert('Please enter your password.');
+                    navigator.notification.alert('Please enter your password');
                     return false;
                 }
                 var username = $("#loginUsername").val();
