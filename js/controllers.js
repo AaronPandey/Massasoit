@@ -12,52 +12,79 @@ angular.module('myApp.controllers', []).
     .controller('AboutCtrl', ['$rootScope', function ($rootScope) {
         $rootScope.showlogin = false;
     }])
-    .controller('ReportIssueCtrl', ['$scope', '$rootScope', '$http', '$location',
-        function ($scope, $rootScope, $http, $location) {
-            if (window.device) {
-                window.plugin.email.open({
-                    to: [$rootScope.metadata.reportissueEmail],
-                    cc:["support@kryptosmobile.com"],
-                    subject: 'myCampus Mobile ( ' + $rootScope.tenant + ' ) Issue reporting',
-                    body: '\n\n\n\n\n\n\n<h3>Device Details</h3><br/><p>' +
-                        'Platform : ' + window.device.platform + '<br/>' +
-                        'UUID : ' + window.device.uuid + '<br/>' +
-                        'Device version : ' + window.device.version + '<br/>' +
-                        'Device model : ' + window.device.model + '<br/>' +
-                        'Build Version : ' + $rootScope.metadata.version + '<br/>' +
-                        '</p>',
-                    isHtml: true
-                });
-            } else {
-                apprise("This feature is not available on Emulator", {'verify': false, 'textYes': "Ok"}, function (r) {
+.controller('ReportIssueCtrl', ['$scope', '$rootScope', '$http', '$location',
+                                function ($scope, $rootScope, $http, $location) {
+                                if (window.device) {
+                                var userID="";
+                                if($.jStorage.get('username')==null || $.jStorage.get('username') =="")
+                                {  userID= "Not available";}
+                                else{
+                                userID = $.jStorage.get('username');
+                                }
+                                window.plugin.email.isServiceAvailable(
+                                                                       function (isAvailable) {
+                                                                       
+                                                                       if(isAvailable){window.plugin.email.open({
+                                                                                                                to: [$rootScope.metadata.reportissueEmail],
+                                                                                                                cc:["support@kryptosmobile.com"],
+                                                                                                                subject: 'myCampus Mobile ( ' + $rootScope.tenant + ' ) Issue reporting',
+                                                                                                                body: '\n\n\n\n\n\n\n<h3>Device Details</h3><br/><p>' +
+                                                                                                                'Platform : ' + window.device.platform + '<br/>' +
+                                                                                                                'UUID : ' + window.device.uuid + '<br/>' +
+                                                                                                                'Device version : ' + window.device.version + '<br/>' +
+                                                                                                                'Device model : ' + window.device.model + '<br/>' +
+                                                                                                                'Build Version : ' + $rootScope.metadata.version + '<br/>' +
+                                                                                                                'User ID : ' + userID + '<br/>' +
+                                                                                                                '</p>',
+                                                                                                                isHtml: true
+                                                                                                                });}
+                                                                       else{navigator.notification.alert("Please check your Email configurations",null,"Report Issue Email","OK");}
+                                                                       }
+                                                                       );
+                                
+                                } else {
+                                apprise("This feature is not available on Emulator", {'verify': false, 'textYes': "Ok"}, function (r) {
+                                        
+                                        });
+                                }
+                                $location.path("/home");
+                                }])
+.controller('SendFeedbackCtrl', ['$scope', '$rootScope', '$http', '$location',
+                                 function ($scope, $rootScope, $http, $location) {
+                                 if (window.device) {
+                                 var userID="";
+                                 if($.jStorage.get('username')==null || $.jStorage.get('username') =="")
+                                 {  userID= "Not available";}
+                                 else{
+                                 userID = $.jStorage.get('username');
+                                 }
+                                 window.plugin.email.isServiceAvailable(
+                                                                        function (isAvailable) {
+                                                                        if(isAvailable){window.plugin.email.open({
+                                                                                                                 to: [$rootScope.metadata.feedbackEmail],
+                                                                                                                 cc:["support@kryptosmobile.com"],
+                                                                                                                 subject: 'myCampus Mobile ( ' + $rootScope.tenant + ' ) Feedback',
+                                                                                                                 body: '\n\n\n\n\n\n\n<h3>Device Details</h3><br/><p>' +
+                                                                                                                 'Platform : ' + window.device.platform + '<br/>' +
+                                                                                                                 'UUID : ' + window.device.uuid + '<br/>' +
+                                                                                                                 'Device version : ' + window.device.version + '<br/>' +
+                                                                                                                 'Device model : ' + window.device.model + '<br/>' +
+                                                                                                                 'Build Version : ' + $rootScope.metadata.version + '<br/>' +
+                                                                                                                 'User ID : ' + userID + '<br/>' +
+                                                                                                                 '</p>',
+                                                                                                                 isHtml: true
+                                                                                                                 });}
+                                                                        else{navigator.notification.alert("Please check your Email configurations",null,"Feedback Email","OK");}
+                                                                        }
+                                                                        );
+                                 } else {
+                                 apprise("This feature is not available on Emulator", {'verify': false, 'textYes': "Ok"}, function (r) {
+                                         
+                                         });
+                                 }
+                                 $location.path("/home");
+                                 }])
 
-                });
-            }
-            $location.path("/home");
-        }])
-    .controller('SendFeedbackCtrl', ['$scope', '$rootScope', '$http', '$location',
-        function ($scope, $rootScope, $http, $location) {
-            if (window.device) {
-                window.plugin.email.open({
-                    to: [$rootScope.metadata.feedbackEmail],
-                    cc:["support@kryptosmobile.com"],
-                    subject: 'myCampus Mobile ( ' + $rootScope.tenant + ' ) Feedback',
-                    body: '\n\n\n\n\n\n\n<h3>Device Details</h3><br/><p>' +
-                        'Platform : ' + window.device.platform + '<br/>' +
-                        'UUID : ' + window.device.uuid + '<br/>' +
-                        'Device version : ' + window.device.version + '<br/>' +
-                        'Device model : ' + window.device.model + '<br/>' +
-                        'Build Version : ' + $rootScope.metadata.version + '<br/>' +
-                        '</p>',
-                    isHtml: true
-                });
-            } else {
-                apprise("This feature is not available on Emulator", {'verify': false, 'textYes': "Ok"}, function (r) {
-
-                });
-            }
-            $location.path("/home");
-        }])
     .controller('DeviceCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
         if(window.device) {
             $scope.devicename = window.device.name;
