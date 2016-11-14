@@ -27,7 +27,7 @@
         <preference name="AndroidPersistentFileLocation" value="Compatibility" />
         <preference name="SplashScreenDelay" value="4000" />
         <preference name="StatusBarOverlaysWebView" value="false" />
-        <preference name="StatusBarBackgroundColor" value="#00000" />
+        <preference name="StatusBarBackgroundColor" value="#000000" />
         <preference name="StatusBarStyle" value="lightcontent" />
         <preference name="KeyboardDisplayRequiresUserAction" value="false"/>
         
@@ -94,6 +94,7 @@
         <access origin="*"/>
         <allow-navigation href="*" />
         <allow-intent href="*" />
+        
         <gap:plugin name="cordova-plugin-contacts" source="npm"/>
         <gap:plugin name="cordova-plugin-device" source="npm"/>
         <gap:plugin name="cordova-plugin-dialogs" source="npm" />
@@ -105,7 +106,7 @@
         <gap:plugin name="cordova-plugin-splashscreen" source="npm"/>
         <gap:plugin name="cordova-plugin-statusbar" source="npm"/>
         
-        <!--<gap:plugin name="cordova-plugin-whitelist" source="npm" />-->
+        <gap:plugin name="cordova-plugin-whitelist" source="npm" />
         <gap:plugin name="cordova-plugin-globalization" source="npm" />
         <gap:plugin name="cordova-plugin-camera" source="npm" />
         <gap:plugin name="cordova-plugin-actionsheet" source="npm" />
