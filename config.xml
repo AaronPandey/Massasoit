@@ -97,7 +97,9 @@
         <allow-navigation href="*" />
         <allow-intent href="*" />
         
-        <gap:plugin name="cordova-plugin-contacts" source="npm"/>
+        <plugin name="cordova-plugin-contacts" source="npm">
+            <variable name="CONTACTS_USAGE_DESCRIPTION" value="to add contact" />
+        </plugin>
         <gap:plugin name="cordova-plugin-device" source="npm"/>
         <gap:plugin name="cordova-plugin-dialogs" source="npm" />
         <gap:plugin name="cordova-plugin-file" source="npm"/>
@@ -110,7 +112,10 @@
         
         <gap:plugin name="cordova-plugin-whitelist" source="npm" />
         <gap:plugin name="cordova-plugin-globalization" source="npm" />
-        <gap:plugin name="cordova-plugin-camera" source="npm" />
+        <plugin name="cordova-plugin-camera" source="npm">
+            <variable name="CAMERA_USAGE_DESCRIPTION" value="to send notification" />
+            <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="to send notification" />
+        </plugin<name />
         <gap:plugin name="cordova-plugin-actionsheet" source="npm" />
         <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
         
@@ -157,6 +162,6 @@
             </array>
         </gap:config-file>
         
-        <!--<gap:config-file platform="ios" parent="CFBundleVersion"><string>1.2.0</string></gap:config-file>-->
+        <gap:config-file platform="ios" parent="CFBundleVersion"><string>1.1.2</string></gap:config-file>
         
     </widget>
