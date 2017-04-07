@@ -148,7 +148,7 @@ var MyCampusApp = {
                 $rootScope.tenant = tenantid;
                 $.jStorage.set('tenant', tenantid);
                 storedMetadata = data;
-
+alert("!storedMetadata==   "+JSON.stringify(data.pushconfig));
                 if(window.device && data.pushconfig) {
                     MyCampusApp.activatePushNotification(tenantid, data.pushconfig,$http);
                 }
@@ -515,6 +515,8 @@ var MyCampusApp = {
         $.blockUI();
         $http.post(url + "/metagate/metadata/" + tenant + "?callback=JSON_CALLBACK", {source: data.source, id : data.id, device: window.device}).
             success(function(data) {
+
+                alert("updateMetadata==   "+JSON.stringify(data.pushconfig));
                 if(window.device && data.pushconfig) {
                     MyCampusApp.activatePushNotification(tenant, data.pushconfig,$http);
                 }
