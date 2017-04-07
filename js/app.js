@@ -854,7 +854,7 @@ var MyCampusApp = {
             error(function(data, status, headers, config) {
 
                 if(!isLogin) {
-                    alert ("Ticket might have expired.. silent authenticating");
+                    //alert ("Ticket might have expired.. silent authenticating");
                     MyCampusApp.silentAuth($rootScope, $http, function(data, status, headers, config) {
                         MyCampusApp.invokeService($rootScope, $http, endpoint, method, data, successCB, errorCB);
                     }, function() {
@@ -892,7 +892,7 @@ var MyCampusApp = {
                 }
             }, function(data, status, headers, config) {
                 console.log("Error Data : " + data);
-                alert ("Error : " + data);
+                //alert ("Error : " + data);
             });
     },
 
@@ -925,10 +925,10 @@ var MyCampusApp = {
                                               };
                                               $http.post("https://push.kryptosmobile.com/kryptosds/push/adddeviceToChannel", pushDeviceData).success(function(response) {
                                                                                                                                               $.jStorage.set("deviceID", devicePushID);
-                                                                                                                                              alert(JSON.stringify(response));
+                                                                                                                                              //alert(JSON.stringify(response));
                                                                                                                                               }).
                                               error(function(err) {
-                                                    alert("err" + JSON.stringify(response));
+                                                    //alert("err" + JSON.stringify(response));
                                                     });
                                               
                                               });
