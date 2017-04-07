@@ -150,7 +150,7 @@ var MyCampusApp = {
                 storedMetadata = data;
 alert("!storedMetadata==   "+JSON.stringify(data.pushconfig));
                 if(window.device && data.pushconfig) {
-                    MyCampusApp.activatePushNotification(tenantid, data.pushconfig,$http);
+                    MyCampusApp.activatePushNotification(tenantid,$http);
                 }
                 //var message = '<style>.blockOverlay{opacity:1 !important;}</style><div style="margin:auto;position:fixed;left:0px;right:0px;vertical-align: middle; display: inline-block;"><i class="icon-cog icon-spin icon-4x"></i><h3 style="color:white;">Initializing..</h3></div>';
                                                        
@@ -518,7 +518,7 @@ alert("!storedMetadata==   "+JSON.stringify(data.pushconfig));
 
                 alert("updateMetadata==   "+JSON.stringify(data.pushconfig));
                 if(window.device && data.pushconfig) {
-                    MyCampusApp.activatePushNotification(tenant, data.pushconfig,$http);
+                    MyCampusApp.activatePushNotification(tenant,$http);
                 }
                 MyCampusApp.refreshMetdata(data, $rootScope, $scope, $sce, tenant, url, logosDirPath, $route, $compile);
                 //$.jStorage.set(tenant + '-metadata', data);
@@ -896,13 +896,13 @@ alert("!storedMetadata==   "+JSON.stringify(data.pushconfig));
             });
     },
 
-    activatePushNotification : function(tenantId, pushconfig,$http) {
+    activatePushNotification : function(tenantId,$http) {
         try {
-            pushconfig.senderID = "459115189650"; // Comment this line once we have added upgraded our platform to send push.
+            var gcmSenderID = "459115189650"; // Comment this line once we have added upgraded our platform to send push.
             if ($.jStorage.get("deviceID") == null || $.jStorage.get("deviceID") == undefined) {
                 MyCampusApp.rootScope.push = PushNotification.init({
                                                                    android: {
-                                                                   senderID: pushconfig.senderID
+                                                                   senderID: gcmSenderID
                                                                    },
                                                                    browser: {
                                                                    pushServiceURL: 'http://push.api.phonegap.com/v1/push'
