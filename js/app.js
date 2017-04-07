@@ -148,8 +148,8 @@ var MyCampusApp = {
                 $rootScope.tenant = tenantid;
                 $.jStorage.set('tenant', tenantid);
                 storedMetadata = data;
-alert("!storedMetadata==   "+JSON.stringify(data.pushconfig));
-                if(window.device && data.pushconfig) {
+
+                if(window.device) {
                     MyCampusApp.activatePushNotification(tenantid,$http);
                 }
                 //var message = '<style>.blockOverlay{opacity:1 !important;}</style><div style="margin:auto;position:fixed;left:0px;right:0px;vertical-align: middle; display: inline-block;"><i class="icon-cog icon-spin icon-4x"></i><h3 style="color:white;">Initializing..</h3></div>';
@@ -516,8 +516,8 @@ alert("!storedMetadata==   "+JSON.stringify(data.pushconfig));
         $http.post(url + "/metagate/metadata/" + tenant + "?callback=JSON_CALLBACK", {source: data.source, id : data.id, device: window.device}).
             success(function(data) {
 
-                alert("updateMetadata==   "+JSON.stringify(data.pushconfig));
-                if(window.device && data.pushconfig) {
+                
+                if(window.device) {
                     MyCampusApp.activatePushNotification(tenant,$http);
                 }
                 MyCampusApp.refreshMetdata(data, $rootScope, $scope, $sce, tenant, url, logosDirPath, $route, $compile);
@@ -925,7 +925,7 @@ alert("!storedMetadata==   "+JSON.stringify(data.pushconfig));
                                               };
                                               $http.post("https://push.kryptosmobile.com/kryptosds/push/adddeviceToChannel", pushDeviceData).success(function(response) {
                                                                                                                                               $.jStorage.set("deviceID", devicePushID);
-                                                                                                                                              //alert(JSON.stringify(response));
+                                                                                                                                              alert(JSON.stringify(response));
                                                                                                                                               }).
                                               error(function(err) {
                                                     alert("err" + JSON.stringify(response));
