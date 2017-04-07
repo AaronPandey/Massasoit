@@ -115,7 +115,7 @@
         <plugin name="cordova-plugin-camera" source="npm">
             <variable name="CAMERA_USAGE_DESCRIPTION" value="to send notification" />
             <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="to send notification" />
-        </plugin<name />
+        </plugin>
         <gap:plugin name="cordova-plugin-actionsheet" source="npm" />
         <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
         
